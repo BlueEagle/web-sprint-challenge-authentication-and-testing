@@ -32,9 +32,9 @@ router.post("/login", (req, res) => {
   Auth.getBy({ username: creds.username }).then((user) => {
     if (user && bcrypt.compareSync(creds.password, user.password)) {
       const token = signToken(user);
-      res.status(200).json({ message: "Login successful!", token });
+      res.status(200).json({ message: "Login successful!", token }).end();
     } else {
-      res.status(401).json({ message: "Credentials incorrect!" });
+      res.status(401).json({ message: "Credentials incorrect!" }).end();
     }
   });
 });
